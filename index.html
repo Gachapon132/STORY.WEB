@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>THE STORIES | Whimsical Dreamscape</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cherry+Bomb+One&family=Quicksand:wght@300;400;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="logo-container">
+            <img src="https://img.freepik.com/premium-photo/grand-story-telling-logo-circular-vector-style_998757-53.jpg" alt="The Stories Logo" class="site-logo">
+            <h1 class="main-title">THE STORIES</h1>
+        </div>
+        
+        <div class="search-wrapper">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="story-search" placeholder="Search for a magical tale..." autocomplete="off">
+        </div>
+    </header>
+
+    <main id="grid-container">
+        </main>
+
+    <div id="story-overlay">
+        <button class="close-btn">&times;</button>
+        <div class="story-header">
+            <img src="" alt="Cover Image" id="overlay-img" />
+            <h1 class="story-title"></h1>
+        </div>
+        <div class="story-content"></div>
+    </div>
+
+    <audio id="page-turn-sound" src="data:audio/mp3;base64,SUQzBAAAAAAAI1RTU0UAAAAPAAADTGF2ZjU2LjU2LjEwMAAAAAAAAAAAAAAA//tAxAAAAAAA////8AAABhY2wgTEFNRTMuMjAwMzYgICAgICAgICAgICAgICAgICAgICAgAAAAAAAAAAAAAAA//vQxAADUAAABJTkZPAQABAAgASwBMAEYAUABPAFkAUwAAAEF1dGhvci0gICAgICAgICAgICAg///8AAAAA" preload="auto"></audio>
+
+    <script src="script.js"></script>
+</body>
+</html>

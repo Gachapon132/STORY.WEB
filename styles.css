@@ -1,0 +1,184 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Quicksand', sans-serif;
+    background: #0a0a12;
+    color: #fff;
+    overflow-x: hidden;
+}
+
+/* --- INNOVATIVE HEADER --- */
+.main-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 60px 20px 40px;
+    background: radial-gradient(circle at center, #1a1a2e 0%, #0a0a12 100%);
+}
+
+.logo-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.site-logo {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    border: 4px solid #f39c12;
+    box-shadow: 0 0 30px rgba(243, 156, 18, 0.5);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    object-fit: cover;
+    background: #000;
+}
+
+.site-logo:hover {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.main-title {
+    font-family: 'Cherry Bomb One', cursive;
+    font-size: clamp(2.5rem, 8vw, 4rem);
+    letter-spacing: 4px;
+    margin-top: 20px;
+    background: linear-gradient(to bottom, #ffeb3b, #f39c12);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.5));
+}
+
+/* --- SEARCH BAR --- */
+.search-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+}
+
+#story-search {
+    width: 100%;
+    padding: 15px 20px 15px 50px;
+    border-radius: 40px;
+    border: 2px solid rgba(243, 156, 18, 0.2);
+    background: rgba(255, 255, 255, 0.05);
+    color: white;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.1rem;
+    outline: none;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+#story-search:focus {
+    border-color: #f39c12;
+    background: rgba(255, 255, 255, 0.12);
+    box-shadow: 0 0 20px rgba(243, 156, 18, 0.2);
+}
+
+.search-icon {
+    position: absolute; left: 20px; top: 50%; transform: translateY(-50%);
+    font-size: 1.2rem; opacity: 0.6;
+}
+
+/* --- GRID & CARDS --- */
+#grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px; padding: 40px; max-width: 1200px; margin: 0 auto;
+    transition: filter 0.5s ease;
+}
+
+#grid-container.blurred {
+    filter: blur(10px) grayscale(50%);
+}
+
+.story-card {
+    background: #fff; border-radius: 24px; overflow: hidden;
+    cursor: pointer; transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.4s ease;
+    display: flex; flex-direction: column;
+    position: relative;
+}
+
+.story-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(243, 156, 18, 0.3);
+}
+
+/* --- ZOOM ANIMATION CLASS --- */
+.story-card.zooming {
+    transform: scale(2.5);
+    opacity: 0;
+    z-index: 5000;
+    pointer-events: none;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease;
+}
+
+.story-card img { width: 100%; height: 220px; object-fit: cover; }
+.story-card h2 {
+    font-family: 'Cherry Bomb One', serif; font-size: 1.4rem;
+    padding: 20px; text-align: center; color: #1a1a2e;
+}
+
+/* --- OVERLAY WITH TRANSITIONS --- */
+#story-overlay {
+    position: fixed; 
+    inset: 0; 
+    background: #fff; 
+    display: none; /* Controlled by JS .active */
+    flex-direction: column; 
+    z-index: 1000; 
+    overflow-y: auto; 
+    color: #222;
+    
+    /* Transition setup */
+    opacity: 0;
+    transform: scale(0.9) translateY(30px);
+    transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+#story-overlay.active {
+    display: flex;
+    opacity: 1;
+    transform: scale(1) translateY(0);
+}
+
+.close-btn {
+    position: fixed; top: 20px; right: 20px; width: 50px; height: 50px;
+    border-radius: 50%; border: none; background: #f39c12; color: white;
+    font-size: 2rem; cursor: pointer; z-index: 1100;
+    transition: transform 0.3s ease;
+}
+
+.close-btn:hover {
+    transform: rotate(90deg) scale(1.1);
+}
+
+.story-header { height: 50vh; position: relative; overflow: hidden; }
+.story-header img { width: 100%; height: 100%; object-fit: cover; }
+.story-header h1 {
+    position: absolute; bottom: 30px; left: 30px;
+    font-family: 'Cherry Bomb One', serif; color: white; font-size: 3rem;
+    text-shadow: 0 4px 10px rgba(0,0,0,0.7);
+}
+
+.story-content { 
+    padding: 50px 30px; 
+    max-width: 800px; 
+    margin: 0 auto; 
+    font-size: 1.2rem; 
+    line-height: 1.8; 
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease 0.3s; /* Delay content slightly for effect */
+}
+
+/* Reveal content when active */
+#story-overlay.active .story-content {
+    opacity: 1;
+    transform: translateY(0);
+}
